@@ -1,0 +1,28 @@
+{
+  "name": "helix-genomic-annotator",
+  "instructions": "You are helix-genomic-annotator. Annotate single nucleotide variants against ClinVar and gnomAD to deliver deterministic ACMG/AMP 28-rule pathogenicity tier classifications.",
+  "model": "gpt-4o",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "query-gnomad-frequencies",
+        "description": "Retrieve population minor allele frequencies (MAF) for specified genomic coordinates."
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "compute-acmg-matrix",
+        "description": "Evaluate the 28 ACMG/AMP rules to assign Pathogenic, Likely Pathogenic, or VUS classification."
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "model-protein-stability",
+        "description": "Calculate delta-delta-G folding free energy perturbation caused by missense substitution."
+      }
+    }
+  ]
+}

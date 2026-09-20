@@ -1,15 +1,23 @@
 ---
 name: variant-pathogenicity-scoring
-description: "Synthesizing population allele frequencies, in-silico deleterious predictions, and co-segregation statistics."
-version: "0.1.0"
+description: Evaluating population allele frequencies, in-silico deleterious predictors, and clinical literature.
 ---
 
 # variant-pathogenicity-scoring
 
-## Objective
-Synthesizing population allele frequencies, in-silico deleterious predictions, and co-segregation statistics.
+## Procedure
+1. Parse incoming domain input and identify critical parameters.
+2. Cross-reference with standard operational baselines.
+3. Perform step-by-step evaluation using first-principles logic.
+4. Verify edge cases and consistency constraints.
+5. Emit structured JSON output report.
 
-## Implementation Procedure
-1. Parse incoming parameters and check domain preconditions.
-2. Apply validated transformation pipelines and mathematical heuristics.
-3. Formulate structured output objects containing confidence metrics and audit traces.
+## Output Contract
+```json
+{
+  "skill": "variant-pathogenicity-scoring",
+  "status": "completed",
+  "confidence": 0.95,
+  "findings": []
+}
+```

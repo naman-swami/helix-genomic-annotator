@@ -1,45 +1,26 @@
-# Helix — Variant Pathogenicity & Genomic Annotation Oracle
+# Helix — Clinical Variant Pathogenicity & Genomic Annotation Oracle
 
-[![OpenGAP Compliant](https://img.shields.io/badge/OpenGAP-0.1.0-blue.svg)](https://opengap.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <strong>Build. Verify. Prove Your Agent Can Travel.</strong>
+</p>
 
-Genomic variant interpretation agent automating ACMG/AMP pathogenicity classification, clinical trial matching, and protein structure perturbation analysis.
+An enterprise-grade, OpenGAP-compliant AI agent for **Healthcare**, engineered for framework portability across OpenAI SDK, CrewAI, Claude Code, and Lyzr.
 
-## Domain Category
-**Healthcare**
+## Domain Overview
+- **Category:** Healthcare
+- **Primary Role:** Clinical Geneticist & Computational Biologist
+- **Architecture:** OpenGAP 0.1.0 Git-Native Agent
 
-## Architecture
-- **OpenGAP Specification**: `0.1.0`
-- **Role**: Clinical Geneticist & Computational Biologist
-- **Primary Goal**: Annotate single nucleotide variants (SNVs) and indels against ClinVar, gnomAD, and AlphaMissense to deliver deterministic ACMG tier classifications.
+## Quick Start & Verification
+```bash
+# Validate OpenGAP compliance
+opengap validate
 
-## Skills Included
-- **`variant-pathogenicity-scoring`**: Synthesizing population allele frequencies, in-silico deleterious predictions, and co-segregation statistics.
-- **`splice-site-perturbation`**: Evaluating cryptic donor and acceptor activation using deep learning splice site junction predictors.
-- **`oncology-trial-matching`**: Matching somatic driver mutations against active basket clinical trials via ClinicalTrials.gov and NCI MATCH.
-
-## Tools Schema
-- **`query-gnomad-frequencies`**: Retrieve population-specific minor allele frequencies (MAF) for specified chromosomal coordinates.
-- **`compute-acmg-classification`**: Apply standard ACMG/AMP 28-rule Bayesian matrix to classify variant pathogenicity tier.
-- **`evaluate-protein-impact`**: Assess AlphaFold structural residue displacement, delta-delta-G folding stability, and binding pocket occlusion.
-
-## Explainability & Verification
-Full explainability compliance under OpenGAP Checkpoint 2 is detailed in [EXPLAINABILITY.md](EXPLAINABILITY.md), covering:
-- Decision Reasoning
-- Data Sources and Inputs Used
-- Confidence Scoring Methodology
-- Source Attribution Protocol
-- Bias Awareness
-- Limitation Taxonomy per Domain
-- Uncertainty Quantification Approach
-
-## Multi-Framework Compatibility
-Adapters and visa export configurations are included in `exports/`:
-- Anthropic Claude (`claude-system-prompt.txt`)
-- OpenAI Assistants (`openai-assistant.json`)
-- LangChain (`langchain-agent.json`)
-- CrewAI (`crewai-agent.json`)
-- AutoGen (`autogen-agent.json`)
+# Export to target framework
+opengap export --format crewai
+opengap export --format lyzr
+opengap export --format openai-sdk
+```
 
 ## License
-MIT License
+MIT

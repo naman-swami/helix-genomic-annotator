@@ -1,0 +1,31 @@
+annotations:
+  cost: none
+  read_only: true
+  requires_confirmation: false
+description: Calculate delta-delta-G folding free energy perturbation caused by missense
+  substitution.
+input_schema:
+  additionalProperties: false
+  properties:
+    residue_mutation:
+      type: string
+    uniprot_id:
+      type: string
+  required:
+  - uniprot_id
+  - residue_mutation
+  type: object
+name: model-protein-stability
+output_schema:
+  additionalProperties: false
+  properties:
+    confidence:
+      type: number
+    data:
+      type: string
+    status:
+      type: string
+  required:
+  - status
+  - data
+  type: object
