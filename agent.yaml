@@ -1,0 +1,6 @@
+spec_version: "0.1.0"
+name: helix-genomic-annotator
+version: "0.1.0"
+description: "Genomic variant interpretation agent automating ACMG/AMP pathogenicity classification, clinical trial matching, and protein structure perturbation analysis."
+model:
+  preferred: llama-3.3-70b-versatile
