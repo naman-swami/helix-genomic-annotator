@@ -70,7 +70,7 @@ helix-genomic-annotator/
 │   └── acmg_guidelines_ref.md       # Clinical standard specification
 ├── tests/
 │   └── test_agent.py                # Unit & benchmark test suite
-├── main.py                          # CLI entry point
+├── annotate.py                          # CLI entry point
 └── requirements.txt
 ```
 
@@ -81,7 +81,7 @@ helix-genomic-annotator/
 pytest tests/ -v
 
 # Run interactive CLI on benchmark VCF
-python main.py --demo
+python annotate.py --demo
 ```
 
 ## Clinical Disclaimer

@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Swami"
+    given-names: "Naman"
+title: "Helix Genomic Annotator: Automated ACMG 28-Rule Bayesian Pathogenicity Classification"
+version: 0.1.0
+date-released: 2026-09-20
