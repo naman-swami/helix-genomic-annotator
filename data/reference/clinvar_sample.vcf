@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency in gnomAD">
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol">
+##INFO=<ID=CLNSIG,Number=1,Type=String,Description="ClinVar clinical significance">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr17	43044295	rs80357906	T	G	.	PASS	AF=0.00003;GENE=BRCA1;CLNSIG=Pathogenic
+chr13	32315474	rs28897700	A	G	.	PASS	AF=0.08500;GENE=BRCA2;CLNSIG=Benign
+chr7	140753336	rs121913342	T	A	.	PASS	AF=0.00001;GENE=BRAF;CLNSIG=Pathogenic
+chr12	25245350	rs121913529	C	T	.	PASS	AF=0.00002;GENE=KRAS;CLNSIG=Pathogenic

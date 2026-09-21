@@ -1,0 +1,30 @@
+{
+  "rs80357906": {
+    "gene": "BRCA1",
+    "global_af": 3e-05,
+    "eur_af": 4e-05,
+    "afr_af": 1e-05,
+    "sas_af": 2e-05
+  },
+  "rs28897700": {
+    "gene": "BRCA2",
+    "global_af": 0.085,
+    "eur_af": 0.088,
+    "afr_af": 0.079,
+    "sas_af": 0.082
+  },
+  "rs121913342": {
+    "gene": "BRAF",
+    "global_af": 1e-05,
+    "eur_af": 1e-05,
+    "afr_af": 0.0,
+    "sas_af": 1e-05
+  },
+  "rs121913529": {
+    "gene": "KRAS",
+    "global_af": 2e-05,
+    "eur_af": 2e-05,
+    "afr_af": 1e-05,
+    "sas_af": 3e-05
+  }
+}
