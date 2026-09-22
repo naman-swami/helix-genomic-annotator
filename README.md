@@ -1,89 +1,55 @@
-# Helix Genomic Annotator
+# Helix Genomic Variant Annotator
 
-[![OpenGAP](https://img.shields.io/badge/OpenGAP-0.1.0-blue.svg)](agent.yaml)
-[![Bioinformatics](https://img.shields.io/badge/Domain-Clinical_Genomics-darkgreen.svg)](docs/acmg_guidelines_ref.md)
-[![Standards](https://img.shields.io/badge/Standard-ACMG%2FAMP_2015-orange.svg)](docs/acmg_guidelines_ref.md)
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](requirements.txt)
-[![Build Status](https://img.shields.io/badge/CI-Passing-brightgreen.svg)](.github/workflows/ci.yml)
+> **Clinical Bioinformatics & ACMG/AMP 2015 Variant Classification Pipeline**  
+> Parsing Variant Call Format (VCF 4.2), gnomAD Allele Frequencies, and Pathogenicity Rules.
 
-A high-throughput clinical variant interpretation engine automating ACMG/AMP (Richards et al. 2015) 28-rule Bayesian pathogenicity classification, gnomAD population control cross-referencing, and ClinVar concordance auditing.
+---
 
-```
-                    ┌─────────────────────────┐
-                    │    Raw VCF 4.2 File     │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │  parsers/vcf_parser.py  │
-                    └────────────┬────────────┘
-                                 │
-                 ┌───────────────┴───────────────┐
-                 ▼                               ▼
-      ┌─────────────────────┐         ┌─────────────────────┐
-      │ gnomAD v4 Frequency │         │ ClinVar / Evidence  │
-      └──────────┬──────────┘         └──────────┬──────────┘
-                 │                               │
-                 └───────────────┬───────────────┘
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ classifiers/acmg_rule   │
-                    │      (28 Criteria)      │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ Clinical Pathogenicity  │
-                    │ Report (JSON / Summary) │
-                    └─────────────────────────┘
+### Citation
+
+```bibtex
+@software{helix_genomic_annotator2026,
+  author = {Swami, Naman},
+  title = {Helix: OpenGAP Clinical Variant Annotation Engine},
+  year = {2026},
+  url = {https://github.com/naman-swami/helix-genomic-annotator}
+}
 ```
 
-## Features
+---
 
-- **VCF v4.2 Intake**: Deterministic parsing of multi-sample or single-variant records with INFO tags.
-- **Population Frequency Grounding**: Automatic evaluation of BA1 (AF > 0.05), BS1 (AF > 0.01), and PM2 (AF < 0.0001) against gnomAD.
-- **ACMG 2015 Combinatorial Engine**: Evaluates PVS1, PS, PM, PP, BA, BS, BP rule combinations to assign:
-  - `PATHOGENIC`
-  - `LIKELY_PATHOGENIC`
-  - `VARIANT_OF_UNCERTAIN_SIGNIFICANCE` (VUS)
-  - `LIKELY_BENIGN`
-  - `BENIGN`
-- **Audit & Provenance**: Full evidence code attribution on every emitted clinical recommendation.
+### ACMG/AMP 2015 Classification Architecture
 
-## Directory Structure
-
-```
-helix-genomic-annotator/
-├── agent.yaml                       # OpenGAP 0.1.0 Manifest
-├── EXPLAINABILITY.md                # 7-checkpoint clinical decision provenance
-├── parsers/
-│   └── vcf_parser.py                # VCF v4.2 specification reader
-├── classifiers/
-│   └── acmg_rule_engine.py          # ACMG/AMP 28-rule Bayesian classifier
-├── pipelines/
-│   └── annotation_pipeline.py       # End-to-end annotation coordinator
-├── data/
-│   └── reference/
-│       ├── clinvar_sample.vcf       # Benchmark VCF fixture
-│       └── gnomad_stub.json         # Reference allele frequencies
-├── docs/
-│   └── acmg_guidelines_ref.md       # Clinical standard specification
-├── tests/
-│   └── test_agent.py                # Unit & benchmark test suite
-├── annotate.py                          # CLI entry point
-└── requirements.txt
+```mermaid
+flowchart LR
+    A[VCF 4.2 Stream] --> B(VCF Parser)
+    B --> C{gnomAD Frequency Filter}
+    C -->|Freq > 5%| D[BA1 Benign Stand-Alone]
+    C -->|Freq < 0.01%| E[PM2 Moderate Pathogenic]
+    E --> F[ACMG Combinatorial Bayesian Engine]
+    D --> F
+    F --> G[Classification: Pathogenic / VUS / Benign]
 ```
 
-## Quick Start
+### Evaluated ACMG Evidence Criteria
+
+The internal classifier (`classifiers/acmg_rule_engine.py`) benchmarks against the ACMG 28-rule standard:
+
+- **BA1 (Stand-alone Benign)**: Population allele frequency in gnomAD exceeds $5.0\%$.
+- **BS1 (Strong Benign)**: Population frequency exceeds disease-specific threshold ($1.0\%$).
+- **PM2 (Moderate Pathogenic)**: Extremely low or absent frequency in control cohorts ($< 0.01\%$).
+- **PP3 (Supporting Pathogenic)**: Multiple lines of in-silico computational evidence predict damaging impact.
+
+---
+
+### VCF Annotation Sample Run
 
 ```bash
-# Run complete test suite
-pytest tests/ -v
-
-# Run interactive CLI on benchmark VCF
+# Annotate benchmark ClinVar and patient VCF variants
 python annotate.py --demo
+
+# Execute clinical bioinformatics validation tests
+pytest tests/ -v
 ```
 
-## Clinical Disclaimer
-
-This software is designed for research and decision-support assistance. Classification output must be reviewed by a certified clinical geneticist or molecular pathologist prior to patient management.
+Reference datasets, schema specifications, and ClinVar calibration samples reside in `data/reference/` and `schemas/`. Provenance documentation is registered in [EXPLAINABILITY.md](EXPLAINABILITY.md).
